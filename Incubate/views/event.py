@@ -1,6 +1,7 @@
 from Incubate.views.home import *
 
 @app.route('/createteam', methods=['GET', 'POST'])
+@login_required
 def createteam():
     event = request.args.get('event')
 
@@ -23,6 +24,7 @@ def createteam():
         return render_template('createteam.html', event = event)
 
 @app.route('/jointeam', methods=['GET', 'POST'])
+@login_required
 def jointeam():
     event = str(request.args.get('event'))
     table = event + 'team'
@@ -68,5 +70,6 @@ def jointeam():
 
 
 @app.route('/questions', methods=['GET', 'POST'])
+@login_required
 def questions():
     return render_template('failure.html')
