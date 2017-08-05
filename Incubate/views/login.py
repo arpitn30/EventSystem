@@ -12,10 +12,10 @@ def login():
 
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == 'POST':
-        if not request.form.get("username") or not request.form.get("password"):
+        if not request.form.get("email") or not request.form.get("password"):
             return render_template('failure.html', msg='Username/Password fields cannot be empty')
 
-        # query database for username
+        # query database for email
         db = mysql.connection.cursor()
 
         rows = db.execute("SELECT * FROM users WHERE email = '{}'".format(request.form.get("email")))
@@ -56,7 +56,7 @@ def register():
     if request.method == 'POST':
 
         # check if form fields are empty and if entered passwords match
-        if not request.form.get("username") or not request.form.get("password") or not request.form.get("email"):
+        if not request.form.get("email") or not request.form.get("password") or not request.form.get("email"):
             return render_template('failure.html', msg='Username/ Password/ Email fields cannot be empty')
         if request.form.get("password") != request.form.get("confirmation"):
             return render_template('failure.html', msg='Password fields do not match')
@@ -64,9 +64,9 @@ def register():
         # create connection
         db = mysql.connection.cursor()
 
-        # query database to see if username already exists
+        # query database to see if email already exists
         rows = db.execute(
-            "SELECT * FROM users WHERE email = '{}' ".format(request.form.get("username")))
+            "SELECT * FROM users WHERE email = '{}' ".format(request.form.get("email")))
         if rows:
             return render_template('failure.html', msg='Username Already Exists')
 
