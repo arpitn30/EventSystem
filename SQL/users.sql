@@ -33,7 +33,6 @@ CREATE TABLE `users` (
   `email` varchar(50) DEFAULT NULL,
   `password` varchar(40) DEFAULT NULL,
   `contact_number` varchar(10) DEFAULT NULL,
-  `auth_level` int(1) NOT NULL DEFAULT '1',
   `facebook_id` varchar(50) DEFAULT NULL,
   `linkedin_id` varchar(50) DEFAULT NULL,
   `gihtub_id` varchar(50) DEFAULT NULL,
