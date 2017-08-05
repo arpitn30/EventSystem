@@ -78,6 +78,10 @@ def questions():
 
     if request.method == 'POST':
         # ADD TO TABLE
+        db.execute("INSERT IGNORE INTO " + table + "(event_name, ques1) VALUES ('{0}', '{1}')".format(
+            event, request.form.get('ques1')
+        ))
+        mysql.connection.commit()
 
         db.execute("SELECT email FROM users WHERE id = '{}'".format(session["user_id"]))
         email = db.fetchone()
