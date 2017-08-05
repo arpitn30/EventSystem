@@ -72,4 +72,27 @@ def jointeam():
 @app.route('/questions', methods=['GET', 'POST'])
 @login_required
 def questions():
-    return render_template('failure.html')
+    event = str(request.args.get('event'))
+    table = event + 'ques'
+    db = mysql.connection.cursor()
+
+    if request.method == 'POST':
+        # ADD TO TABLE
+
+        db.execute("SELECT email FROM users WHERE id = '{}'".format(session["user_id"]))
+        email = db.fetchone()
+
+        subject = event
+        message = \
+        """
+            Confirmation: You have been registered for the {0} event.
+        """.format(event)
+        with mail.connect() as conn:
+            msg = Message(recipients=email,
+                          body=message,
+                          subject=subject)
+            conn.send(msg)
+        return redirect(url_for('index', event = event))
+
+    else:
+        return render_template('questions.html', event = event)
