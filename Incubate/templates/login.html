@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/Google-Style-Login.css') }}">
+<div class="login-card">
+        <form class="form-signin" action="{{ url_for('login') }}" method="post">
+            <input class="form-control" name="email" type="text" required="" placeholder="Email address" autofocus="" id="inputEmail">
+            <input class="form-control" name="password" type="password" required="" placeholder="Password" id="inputPassword">
+            <div class="checkbox">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">Remember me</label>
+                </div>
+            </div>
+            <button class="btn btn-danger btn-block btn-lg btn-signin" type="submit">LOGIN </button>
+        </form><a href="#" class="forgot-password">Forgot your password?</a>
+        <p> </p>
+        <div class="center-align">
+            <p class="text-center">LOGIN VIA</p><img style="margin:5px" src="{{ url_for('static', filename='img/In.jpg') }}"><img style="margin:5px" src="{{ url_for('static', filename='img/Google.png') }}"><img style="margin:5px" src="{{ url_for('static', filename='img/FB.png') }}"></div>
+    </div>
+    <div class="Register-card text-center"><strong><strong>Don't have an</strong> <strong>account?</strong> <a class="text-danger" href="#"><strong>Register</strong> <strong>here</strong></a></strong>
+    </div>
+{% endblock %}
