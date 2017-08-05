@@ -11,3 +11,11 @@ from Incubate.helpers import *
 from Incubate import app
 from Incubate import mysql
 from Incubate import mail
+
+from Incubate.views import login
+
+
+@app.route('/', methods=['GET', 'POST'])
+@login_required
+def index():
+    pass
