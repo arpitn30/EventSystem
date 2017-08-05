@@ -1,6 +1,6 @@
 from functools import wraps
 
-from flask import redirect, session, url_for, render_template
+from flask import redirect, session, url_for, render_template, request
 
 
 def apology(msg=""):
@@ -29,8 +29,12 @@ def login_required(f):
 
     @wraps(f)
     def decorated_function(*args, **kwargs):
+        if request.method == 'POST':
+            event = request.form.get('event')
+        else:
+            event = None
         if session.get("user_id") is None:
-            return redirect(url_for("login"))
+            return redirect(url_for("login", event = event))
         return f(*args, **kwargs)
 
     return decorated_function
