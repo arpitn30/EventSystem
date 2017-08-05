@@ -28,6 +28,7 @@ app.config['SESSION_TYPE']      = 'filesystem'
 Session(app)
 
 from Incubate.views import home
+from Incubate.views import login
 
 if __name__ == '__main__':
     app.run()

@@ -8,7 +8,7 @@ def login():
     session.clear()
 
     # If the user has been redirected through an event url
-    event = request.args['event']
+    event = request.args.get('event')
 
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == 'POST':
@@ -50,7 +50,7 @@ def register():
     session.clear()
 
     # If the user has been redirected through an event url
-    event = request.args['event']
+    event = request.args.get('event')
 
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == 'POST':
