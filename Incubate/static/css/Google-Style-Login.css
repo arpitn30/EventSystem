@@ -1,7 +1,7 @@
 .login-card{
   max-width:350px;
   padding:40px 40px;
-  background-color:#F7F7F7;
+  background-color:rgba(255, 255, 255, 0.6);
   margin:0 auto 25px;
   margin-top:10%;
   border-radius:2px;
