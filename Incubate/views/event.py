@@ -18,8 +18,9 @@ def event():
 
 @app.route('/createteam', methods=['GET', 'POST'])
 def createteam():
+    event = request.args.get('event')
+
     if request.method == 'POST':
-        event = request.args.get('event')
 
         table = event + 'team'
 
@@ -35,7 +36,6 @@ def createteam():
         return redirect(url_for('questions', event = event))
 
     else:
-        event = request.args.get('event')
         return render_template('createteam.html', event = event)
 
 @app.route('/jointeam', methods=['GET', 'POST'])

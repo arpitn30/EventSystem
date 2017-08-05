@@ -19,4 +19,25 @@ from Incubate.views import event
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
-    pass
+    event = request.args.get('event')
+    db = mysql.connection.cursor()
+
+    if event is None:
+        rows = db.execute("SELECT * FROM event")
+        eventslist = db.fetchall()
+
+        return render_template('index.html', eventslist = eventslist)
+
+    else:
+        if request.method == 'POST':
+            if request.form.get('join') == 'createteam':
+                return redirect(url_for('createteam', event = event))
+
+            elif request.form.get('join') == 'jointeam':
+                return redirect(url_for('jointeam', event=event))
+
+            else:
+                return render_template('failure.html', msg = 'Invalid Option')
+
+        else:
+            return render_template('event.html', event = event)

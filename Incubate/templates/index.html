@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Event
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('index') }}" method="GET" class="register-box">
+        <fieldset>
+            {% for event in eventslist %}
+            <div class="form-group">
+                <button class="btn btn-default" name="event" value={{ event['name'] }} type="submit">{{ event['name'] }}</button>
+            </div>
+            {% endfor %}
+        </fieldset>
+    </form>
+{% endblock %}

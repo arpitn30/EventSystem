@@ -26,12 +26,9 @@ def login():
                                         'hex_codec').decode('utf-8'):
             # create session
             session['user_id']  = rv['id']
-            session['event']    = event
+            session['verified'] = False
 
-            if event == None:
-                return redirect(url_for('index', verified = rv['email_verified']))
-            else:
-                return redirect(url_for(event))
+            return redirect(url_for('index', event=event))
 
         else:
             return render_template('failure.html', msg="Invalid Username And/Or Password")
@@ -77,8 +74,8 @@ def register():
 
 
         db.execute(
-            "INSERT IGNORE INTO users (first_name, last_name, email, password) VALUES ('{0}', '{1}', '{2}', '{3}')".format(
-                request.form.get("first_name"), request.form.get("last_name"), request.form.get("email"), password))
+            "INSERT IGNORE INTO users (first_name, last_name, email, password, email_verified, contact_verified) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')".format(
+                request.form.get("first_name"), request.form.get("last_name"), request.form.get("email"), password, False, False))
         mysql.connection.commit()
 
         # get id and auth level
@@ -87,12 +84,9 @@ def register():
 
         # create session
         session['user_id']  = rv['id']
-        session['event'] = event
+        session['verified'] = False
 
-        if event == None:
-            return redirect(url_for('index', verified = False))
-        else:
-            return redirect(url_for(event))
+        return redirect(url_for('index', event = event))
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:

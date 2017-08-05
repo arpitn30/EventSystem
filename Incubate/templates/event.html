@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Event
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('index', event = event) }}" method="post" class="register-box">
+        <fieldset>
+            <div class="form-group">
+                <button class="btn btn-default" name="join" value="createteam" type="submit">Create Team</button>
+            </div>
+            <br><br><br>
+            <div class="form-group">
+                <button class="btn btn-default" name="join" value="jointeam" type="submit">Join Team</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
