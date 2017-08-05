@@ -13,6 +13,7 @@ from Incubate import mysql
 from Incubate import mail
 
 from Incubate.views import login
+from Incubate.views import event
 
 
 @app.route('/', methods=['GET', 'POST'])

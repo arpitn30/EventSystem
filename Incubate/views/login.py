@@ -26,6 +26,7 @@ def login():
                                         'hex_codec').decode('utf-8'):
             # create session
             session['user_id']  = rv['id']
+            session['event']    = event
 
             if event == None:
                 return redirect(url_for('index', verified = rv['email_verified']))
@@ -86,6 +87,7 @@ def register():
 
         # create session
         session['user_id']  = rv['id']
+        session['event'] = event
 
         if event == None:
             return redirect(url_for('index', verified = False))

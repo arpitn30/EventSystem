@@ -29,6 +29,7 @@ Session(app)
 
 from Incubate.views import home
 from Incubate.views import login
+from Incubate.views import event
 
 if __name__ == '__main__':
     app.run()
