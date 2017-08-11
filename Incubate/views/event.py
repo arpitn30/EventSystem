@@ -78,8 +78,8 @@ def questions():
 
     if request.method == 'POST':
         # ADD TO TABLE
-        db.execute("INSERT IGNORE INTO " + table + "(event_name, ques1) VALUES ('{0}', '{1}')".format(
-            event, request.form.get('ques1')
+        db.execute("INSERT IGNORE INTO " + table + "(ques1) VALUES ('{0}')".format(
+            request.form.get('ques1')
         ))
         mysql.connection.commit()
 
