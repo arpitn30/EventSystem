@@ -14,6 +14,14 @@ app.config['MYSQL_DB']          = 'incubate'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
 
+@app.cli.command('initdb')
+def initdb_command():
+    """Initializes the database."""
+    db = mysql.connection.cursor()
+    with app.open_resource('SQL/incubate.sql', mode='r') as f:
+        db.execute(f.read())
+    print('Initialized the database.')
+
 MAIL_SERVER = '127.0.0.1'
 MAIL_PORT = 25
 MAIL_USERNAME = None
